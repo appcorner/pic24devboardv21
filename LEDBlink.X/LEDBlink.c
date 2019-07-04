@@ -12,12 +12,22 @@ void setup(void) {
 }
 
 void loop(void) {
-    LedR=1;
-    LedY=1;
-    LedG=1;
-    __delay_ms(1000);
-    LedR=0;
-    LedY=0;
-    LedG=0;
-    __delay_ms(1000);
+    //LedY=1;
+    //__delay_ms(500);
+    //LedY=0;
+    //__delay_ms(500);
+    //if (sw1==0) {
+    //    while(sw1==0) {__delay_ms(100);}
+    //    LedY=0;
+    //}
+    /*if (sw2==0) {
+        while(sw2==0) {__delay_ms(100);}
+    }*/
+    /*if (sw1 == 0) {
+        while(sw1==0){__delay_ms(100);}
+        if(LedR==0) LedR=1;
+        else LedR=0;
+    }*/
+    LedR=sw1;
+    LedG=buzz=sw2;
 }

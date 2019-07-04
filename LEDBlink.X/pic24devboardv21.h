@@ -16,12 +16,15 @@
 #include "xc.h"
 #include <libpic30.h>
 
+#define buzz        LATAbits.LATA4
+
 #define LedG        LATBbits.LATB0
 #define LedY        LATBbits.LATB1
 #define LedR        LATBbits.LATB2
 
 #define sw1         PORTAbits.RA1
 #define sw2         PORTBbits.RB10
+
 
 void DEVBOARD_Initialize(void);
 void setup(void);

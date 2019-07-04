@@ -6,18 +6,20 @@
  */
 
 
+#include <p24FJ48GA002.h>
+
 #include "pic24devboardv21.h"
 
 void DEVBOARD_Initialize(void)
 {
     //CLKDIV=0; 
-
     // TRISA: RAxx
     // ---- ---- ---4 3210
     // 0000 0000 0000 0000
     
     //TRISA = 0x0002;  // 0000 0000 0000 0010 => 1=input, 0=output 
     TRISAbits.TRISA1=1; // set RA1 input for sw1
+    TRISAbits.TRISA4=0; // set RA4 out for buzz
 
     //ODCA =  0x0000;  // 0000 0000 0000 0000 => 1=Open Drain
     
@@ -35,5 +37,11 @@ void DEVBOARD_Initialize(void)
     //ODCB =  0x8000;  // 0000 0000 0000 0000 => 1=Open Drain
     
     CNPU1bits.CN3PUE=1; // sw1 RA1 pull up
-    CNPU1bits.CN6PUE=1; // sw2 RB10 pull up
+    CNPU2bits.CN16PUE=1; // sw2 RB10 pull up
+    
+    AD1PCFGbits.PCFG1=1; // set sw1 as digital port
+    
+    // default
+    buzz=1;
+    LedG=LedY=LedR=0;
 }
