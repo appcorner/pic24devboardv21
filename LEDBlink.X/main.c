@@ -41,8 +41,6 @@ int CONFIG1 __attribute__((space(prog), address(0x83FE))) = 0x1F6A ;
 int main(void)
 {
     DEVBOARD_Initialize();
-    
-    __delay_ms(1000);
 
     setup();
     
