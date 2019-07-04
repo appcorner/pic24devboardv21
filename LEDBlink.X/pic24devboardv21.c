@@ -29,7 +29,7 @@ void DEVBOARD_Initialize(void)
     // 5432 1098 7654 3210
     // 0000 0000 0000 0000
     
-    //TRISB = 0x0800; // 0000 0100 0000 0000 => 1=input, 0=output
+    //TRISB = 0x0400; // 0000 0100 0000 0000 => 1=input, 0=output
     TRISBbits.TRISB0=0; // set RB0 out for LedG
     TRISBbits.TRISB1=0; // set RB1 out for LedY
     TRISBbits.TRISB2=0; // set RB2 out for LedR
