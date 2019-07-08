@@ -5,17 +5,6 @@
  * Created on July 1, 2019, 12:20 PM
  */
 
-
-// Defines for System Clock Timing
-//_FOSCSEL(FNOSC_FRCPLL) 
-//gives builtin 8mhz, times 4 (pll) = 32MHz, divided by 2 = 16 MHz.
-#define XTFREQ          8000000              // Crystal frequency
-#define PLLMODE         4                    // On-chip PLL setting - must match _FOSC configuration
-#define FCY             (XTFREQ*PLLMODE/2)   // Instruction Cycle Frequency
-
-#include "xc.h"
-#include <libpic30.h>
-
 #define buzz        LATAbits.LATA4
 
 #define LedG        LATBbits.LATB0
@@ -27,5 +16,8 @@
 
 
 void DEVBOARD_Initialize(void);
+void DLms(unsigned int x);
+void DLus(unsigned int x);
+
 void setup(void);
 void loop(void);

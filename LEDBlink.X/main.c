@@ -5,7 +5,7 @@
  * Created on July 1, 2019, 12:20 PM
  */
 
-//#include "xc.h"
+#include "xc.h"
 #include "pic24devboardv21.h"
 
 //_CONFIG1(JTAGEN_OFF & GCP_ON & COE_OFF & FWDTEN_OFF & FWPSA_PR32 & WDTPS_PS1024 )
