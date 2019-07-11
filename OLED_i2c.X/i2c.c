@@ -1,3 +1,10 @@
+/*
+ * File:   i2c.c
+ * Author: anusorn
+ *
+ * Created on July 9, 2019, 12:00 PM
+ */
+
 #include <xc.h>
 
 #include "i2c.h"
@@ -69,6 +76,11 @@ void _I2C_Stop()
     I2C_SCL=0;I2C_SDAo=0;DLus(2);
     I2C_SCL=1;DLus(1);
     I2C_SDAo=1;DLus(1);
+}
+void _I2C_DelayStop(unsigned int delay)
+{
+    _I2C_Stop();
+    if (delay>0) DLms(delay);
 }
 
 void _I2C_SendByte(unsigned char data)

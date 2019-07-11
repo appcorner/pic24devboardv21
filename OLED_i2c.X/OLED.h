@@ -9,8 +9,6 @@
 #ifndef OLED_H
 #define	OLED_H
 
-#include <xc.h>
-
 void ssd1306Init(void);
 void OLedClr(void);
 void LedWStr13TH(unsigned char a, unsigned char *dat);

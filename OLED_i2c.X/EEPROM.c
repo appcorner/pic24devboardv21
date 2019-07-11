@@ -9,14 +9,11 @@
 #include <xc.h>
 
 #include "i2c.h"
-#include "pic24devboardv21.h"
 
 void EPWR(unsigned int addr, unsigned char data)
 {
 if (_I2C_Connect(0xa0)==0)
 {
-    LedR=1;
-
     // first word 0x00
     _I2C_SendByte((addr >> 8) & 0x0f);
     //wait for ACK in=0
@@ -34,11 +31,8 @@ if (_I2C_Connect(0xa0)==0)
 } else {
     return;  // device not response
 }
-// stop
-_I2C_Stop();
-
-// wait for eprom write data 5ms
-DLms(5);
+// stop with delay for write data
+_I2C_DelayStop(5);
 
 return; // success
 }
@@ -48,21 +42,21 @@ unsigned char EPRD(unsigned int addr)
 unsigned char data;
 if (_I2C_Connect(0xa0)==0)
 {
-    LedR=1;
   // first word 0x00
   _I2C_SendByte((addr >> 8) & 0x0f);
   //wait for ACK in=0
-  if (_I2C_AckTest()!=0) {  }
+  if (_I2C_AckTest()!=0) { return 0; }
 
   // secound word 0x00 
   _I2C_SendByte(addr & 0x0f);
   //wait for ACK in=0
-  if (_I2C_AckTest()!=0) {  }
+  if (_I2C_AckTest()!=0) { return 0; }
 
   _I2C_ReStart();
 
   _I2C_SendByte(0xa1);
-  _I2C_Ack();
+  if (_I2C_AckTest()!=0) { return 0; }
+  //_I2C_Ack();
 
   data = _I2C_ReadByte();
 

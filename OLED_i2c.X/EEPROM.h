@@ -9,8 +9,6 @@
 #ifndef EEPROM_H
 #define	EEPROM_H
 
-#include <xc.h>
-
 void EPWR(unsigned int addr, unsigned char data);
 unsigned char EPRD(unsigned int addr);
 
