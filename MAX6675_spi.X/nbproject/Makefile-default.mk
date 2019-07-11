@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=main.c pic24devboardv21.c MAX6675_spi.c
+SOURCEFILES_QUOTED_IF_SPACED=main.c pic24devboardv21.c MAX6675_spi.c OLED.c i2c.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.o ${OBJECTDIR}/pic24devboardv21.o ${OBJECTDIR}/MAX6675_spi.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/main.o.d ${OBJECTDIR}/pic24devboardv21.o.d ${OBJECTDIR}/MAX6675_spi.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.o ${OBJECTDIR}/pic24devboardv21.o ${OBJECTDIR}/MAX6675_spi.o ${OBJECTDIR}/OLED.o ${OBJECTDIR}/i2c.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/main.o.d ${OBJECTDIR}/pic24devboardv21.o.d ${OBJECTDIR}/MAX6675_spi.o.d ${OBJECTDIR}/OLED.o.d ${OBJECTDIR}/i2c.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/main.o ${OBJECTDIR}/pic24devboardv21.o ${OBJECTDIR}/MAX6675_spi.o
+OBJECTFILES=${OBJECTDIR}/main.o ${OBJECTDIR}/pic24devboardv21.o ${OBJECTDIR}/MAX6675_spi.o ${OBJECTDIR}/OLED.o ${OBJECTDIR}/i2c.o
 
 # Source Files
-SOURCEFILES=main.c pic24devboardv21.c MAX6675_spi.c
+SOURCEFILES=main.c pic24devboardv21.c MAX6675_spi.c OLED.c i2c.c
 
 
 CFLAGS=
@@ -115,6 +115,20 @@ ${OBJECTDIR}/MAX6675_spi.o: MAX6675_spi.c  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} $(MP_EXTRA_CC_PRE)  MAX6675_spi.c  -o ${OBJECTDIR}/MAX6675_spi.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/MAX6675_spi.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
 	@${FIXDEPS} "${OBJECTDIR}/MAX6675_spi.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
+${OBJECTDIR}/OLED.o: OLED.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/OLED.o.d 
+	@${RM} ${OBJECTDIR}/OLED.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  OLED.c  -o ${OBJECTDIR}/OLED.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/OLED.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
+	@${FIXDEPS} "${OBJECTDIR}/OLED.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/i2c.o: i2c.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/i2c.o.d 
+	@${RM} ${OBJECTDIR}/i2c.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  i2c.c  -o ${OBJECTDIR}/i2c.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/i2c.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
+	@${FIXDEPS} "${OBJECTDIR}/i2c.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
 else
 ${OBJECTDIR}/main.o: main.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
@@ -136,6 +150,20 @@ ${OBJECTDIR}/MAX6675_spi.o: MAX6675_spi.c  nbproject/Makefile-${CND_CONF}.mk
 	@${RM} ${OBJECTDIR}/MAX6675_spi.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  MAX6675_spi.c  -o ${OBJECTDIR}/MAX6675_spi.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/MAX6675_spi.o.d"        -g -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
 	@${FIXDEPS} "${OBJECTDIR}/MAX6675_spi.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/OLED.o: OLED.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/OLED.o.d 
+	@${RM} ${OBJECTDIR}/OLED.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  OLED.c  -o ${OBJECTDIR}/OLED.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/OLED.o.d"        -g -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
+	@${FIXDEPS} "${OBJECTDIR}/OLED.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/i2c.o: i2c.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/i2c.o.d 
+	@${RM} ${OBJECTDIR}/i2c.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  i2c.c  -o ${OBJECTDIR}/i2c.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/i2c.o.d"        -g -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
+	@${FIXDEPS} "${OBJECTDIR}/i2c.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 endif
 
