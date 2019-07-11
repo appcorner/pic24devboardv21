@@ -5,7 +5,8 @@
  * Created on July 2, 2019, 11:03 AM
  */
 
-#include "xc.h"
+#include <xc.h>
+
 #include "pic24devboardv21.h"
 
 void setup(void) {

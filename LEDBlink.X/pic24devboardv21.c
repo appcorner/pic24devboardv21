@@ -5,7 +5,9 @@
  * Created on July 1, 2019, 12:20 PM
  */
 
-#include "xc.h"
+
+#include <xc.h>
+
 #include "pic24devboardv21.h"
 
 // Defines for System Clock Timing
@@ -17,10 +19,10 @@
 
 volatile struct 
 {
-    unsigned mscF   :1;
+    unsigned msFlag:1;
 } Flag;
          
-volatile unsigned int   msc;
+volatile unsigned int msCnt; // ms counter
 
 void DEVBOARD_Initialize(void)
 {
@@ -77,9 +79,9 @@ void DEVBOARD_Initialize(void)
 
 void DLms(unsigned int x)
 {
-    msc=x; 
-    Flag.mscF=0;
-    while(Flag.mscF==0) {  }
+    msCnt=x; 
+    Flag.msFlag=0;
+    while(Flag.msFlag==0) {}
 }
 
 void DLus(unsigned int x)
@@ -87,17 +89,16 @@ void DLus(unsigned int x)
     unsigned int i;
     while(x)
     {
-        for(i=3;i>0;i--) {asm("nop");}       
+        for(i=3;i>0;i--) {asm("NOP");}       
         x--;
     }
 }
 
-//**********************************************************************************
+//------------------------------------------------------------------------------
 // Timer interrupt every 1 ms
-//-------------------------------------------------------------------------------
- 
+//------------------------------------------------------------------------------
 void __attribute__((interrupt, no_auto_psv)) _T2Interrupt()
 {       
-    if(msc==0) {Flag.mscF=1;} else {msc--;} // function DLms use
-    _T2IF = 0; 
+    if(msCnt==0) {Flag.msFlag=1;} else {msCnt--;} // function DLms use
+    _T2IF=0; 
 }
