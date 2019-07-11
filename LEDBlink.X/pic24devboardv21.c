@@ -1,6 +1,8 @@
 /*
  * File:   pic24devboardv21.c
  * Author: anusorn
+ * 
+ * pic24 devboard v.2.1 by Mr.Churdpong Lerttamakhun
  *
  * Created on July 1, 2019, 12:20 PM
  */
