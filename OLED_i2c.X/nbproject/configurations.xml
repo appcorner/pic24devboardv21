@@ -5,7 +5,6 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>pic24devboardv21.h</itemPath>
-      <itemPath>tahoma font.h</itemPath>
       <itemPath>tahoma.h</itemPath>
       <itemPath>i2c.h</itemPath>
       <itemPath>OLED.h</itemPath>
