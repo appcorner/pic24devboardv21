@@ -14,29 +14,34 @@
 #include "pic24devboardv21.h"
 #include "LCD.h"
 
-unsigned char ch;
 char DISPLAY[1024];
-uint8_t initing;
+int counter;
 
 void setup(void) {
 
-    lcdinit(); //always required in order to put in 4 bit mode 
-    lcdcreatecustom();
+    lcdinit();
     lcdbanner();
+    counter = 0;
+    sprintf(DISPLAY, "count = %d ", counter);
+    lcdxy(1,2);
+    lcdtext(DISPLAY);
     
 }
 
 void loop(void) {
-    LedR=1;
-    DLms(500);
-    LedR=0;
-    DLms(500);
-    while(sw1==1) {}
-    LedY=1;
-    while(sw1==0) {}
-    LedY=0;
-    lcdcs();
-    lcdxy(1,1);
-    //lcdcreatecustom();
-    //lcdbanner();
+    if(sw1==0) {
+        LedG=1;
+        while(sw1==0) {DLms(100);}
+        counter++;
+        LedG=0;
+    }
+    if(sw2==0) {
+        LedY=1;
+        while(sw2==0) {DLms(100);}
+        counter--;
+        LedY=0;
+    }
+    sprintf(DISPLAY, "count = %d ", counter);
+    lcdxy(1,2);
+    lcdtext(DISPLAY);
 }

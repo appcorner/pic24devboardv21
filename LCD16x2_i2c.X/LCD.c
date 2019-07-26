@@ -3,11 +3,15 @@
  * Author: anusorn
  *
  * Created on July 22, 2019, 8:09 AM
+ * 
+ * ref: https://www.microchip.com/forums/m907408.aspx
+ * 
  */
 
 
 #include <xc.h>
 #include <stdint.h>
+#include <string.h>
 
 #include "pic24devboardv21.h"
 #include "i2c.h"
@@ -92,26 +96,6 @@ void lcdcmd(uint8_t c){
 
 void lcddata(uint8_t c){
     LCD_Send_Byte(1,c);
-}
-
-void lcdcust(const char text[]){
-    if (text == "supero"){
-         LCD_Send_Byte(1,0x00); 
-    } else if (text == "delta") {
-         LCD_Send_Byte(1,0x01); 
-    } else if (text == "rpm") {
-         LCD_Send_Byte(1,0x02); 
-    } else if (text == "degf") {
-         LCD_Send_Byte(1,0x03); 
-    } else if (text == "<>") {
-         LCD_Send_Byte(1,0x04); 
-    } else if (text == "ft") {
-         LCD_Send_Byte(1,0x05); 
-    } else if (text == "mph") {
-         LCD_Send_Byte(1,0x06); 
-    } else if (text == "whr") {
-         LCD_Send_Byte(1,0x07); 
-    }
 }
 
 void lcdtext(const char text[]) {
@@ -216,62 +200,5 @@ void lcdinit(void){
 void lcdbanner(void) {
     lcdcs();
     lcdxy(1,1);
-    lcdtext("Banner  V2"); // write name of project to LCD
-    lcdxy(1,2);
-    lcdcust("supero");
-    lcdcust("delta");
-    lcdcust("rpm");
-    lcdcust("degf");
-    lcdcust("<>");
-    lcdcust("ft");
-    lcdcust("mph");
-    lcdcust("whr");
-}
-
-void lcdcmdthendata(uint8_t ints[], uint8_t num){ 
-    //function to write command integer then data integers to LCD via I2C
-    uint8_t nin=6*num;
-    for(lcd_j=0; lcd_j<num; ++lcd_j) {
-        if(lcd_j != 0){
-            lcd_cd_state=1; // rest are data
-        } else {
-            lcd_cd_state=0; // first one is Command
-        }
-        // Send upper nibble
-        lcd_tempbyte=(ints[lcd_j]&0xF0)|lcd_cd_state; // Write Most Significant Nibble of ints[j] (LCD in 4-bit mode)
-        sbs[6*lcd_j]=(lcd_tempbyte|0x08); 
-        sbs[6*lcd_j+1]=(lcd_tempbyte|0x0C);
-        sbs[6*lcd_j+2]=(lcd_tempbyte|0x08);
-        // Send lower nibble
-        lcd_tempbyte=(ints[lcd_j]<<4)|lcd_cd_state; // Write Most Significant Nibble of ints[j] (LCD in 4-bit mode)
-        sbs[6*lcd_j+3]=(lcd_tempbyte|0x08); 
-        sbs[6*lcd_j+4]=(lcd_tempbyte|0x0C);
-        sbs[6*lcd_j+5]=(lcd_tempbyte|0x08);
-    }
-    i2c_write_sbs(nin);
-}
-
-void lcdcreatecustom(){
-    uint8_t snd[10];
-    uint8_t cc[8][8]={
-        {0b01100,0b10010,0b10010,0b01100,0b00000,0b00000,0b00000,0b00000}, // Custom Character 0 Super o
-        {0b00000,0b00100,0b00000,0b01010,0b00000,0b10101,0b00000,0b00000}, // Custom Character 1 Delta
-        {0b10100,0b11001,0b10010,0b10100,0b01000,0b01010,0b10101,0b10001}, // Custom Character 2 r/m
-        {0b01000,0b10100,0b01000,0b00111,0b01000,0b01110,0b01000,0b01000}, // Custom Character 3 deg F
-        {0b00100,0b01010,0b01010,0b10001,0b01010,0b01010,0b00100,0b00000}, // Custom Character 4 <>
-        {0b01100,0b10000,0b11000,0b10000,0b10010,0b00111,0b00010,0b00010}, // Custom Character 5 ft
-        {0b11010,0b10101,0b10101,0b00010,0b00100,0b01111,0b10101,0b00101}, // Custom Character 6 m/h
-        {0b10101,0b01010,0b10000,0b10000,0b11100,0b10100,0b00111,0b00100}, // Custom Character 7 whr 
-    }; 
-    int r,c;
-    for (r=0; r<8; r++){
-        snd[0] = 0x40|(8*r); //cmd 
-        int ins=1;
-        for (c=0; c<8; c++){
-            snd[ins]=cc[r][c]; //data
-            ins++;
-        }
-        lcdcmdthendata(snd,ins);
-    }
-    LCD_Send_Byte(0, 1); // Clear screen
+    lcdtext("DEV Board V2.1"); // write name of project to LCD
 }
