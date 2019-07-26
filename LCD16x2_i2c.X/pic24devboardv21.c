@@ -48,9 +48,10 @@ void DEVBOARD_Initialize(void)
     TRISBbits.TRISB0=0; // set RB0 output for LedG
     TRISBbits.TRISB1=0; // set RB1 output for LedY
     TRISBbits.TRISB2=0; // set RB2 output for LedR
-    TRISBbits.TRISB9=0; // set RB9 output at start for Sdax => I2C SDA(io)
     TRISBbits.TRISB10=1; // set RB10 input for sw2
-    TRISBbits.TRISB11=0; // set RB11 output for Sclk => I2C SCK
+
+    //TRISBbits.TRISB9=0; // set RB9 output at start for Sdax => I2C SDA(io)
+    //TRISBbits.TRISB11=0; // set RB11 output for Sclk => I2C SCK
     
     //ODCB =  0x0000;  // 0000 0000 0000 0000 => 1=Open Drain
     

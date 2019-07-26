@@ -140,7 +140,9 @@ void lcdxy(char x, char y){
     LCD_Send_Byte(0, 0x80 | address);
 }
 
-void lcdinit(void){ 
+void lcdinit(void){
+    _I2C_Initialize();
+    
     DLms(30); // Let LCD power up
                         // E bit must be bit 2 of low nibble first write is E low, 2nd is E high and 3rd is E low
                         // Command/Data bit is bit 0 of low nibble
